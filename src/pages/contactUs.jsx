@@ -1,11 +1,9 @@
-import React from "react";
-
 const ContactUS = () => {
   return (
     <>
       <section className="relative isolate bg-white px-30 py-30 sm:py-32 lg:px-8">
         <div className="container">
-          <div className="-mx-4 flex flex-wrap lg:justify-between">
+          <div className="-mx-7 sm:my-10 flex flex-wrap lg:justify-between">
             <div className="w-full px-20 lg:w-1/2 xl:w-6/12">
               <div className="mb-12 max-w-[570px] lg:mb-0">
                 <span className="mb-4 block text-base font-semibold text-primary">

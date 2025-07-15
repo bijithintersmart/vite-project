@@ -1,31 +1,29 @@
-import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
-import AboutUS from "./pages/aboutUs";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
-import ContactUS from "./pages/contactUs";
-import "./index.css"; 
-import Header from "./components/header";
-import Feature from "./pages/feature";
+import AboutUs from "./pages/aboutUs";
 import Services from "./pages/services";
-import NotFoundPage from './pages/404'
+import ContactUs from "./pages/contactUs";
+import Feature from "./pages/feature";
+import Login from "./pages/login";
+import PageNotFound from "./pages/404";
+import Header from "./components/header";
 import Footer from "./components/footer";
 
 function App() {
   return (
-    <div className="">
+    <>
       <Header />
-      <main className="">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/feature" element={<Feature />} />
-          <Route path="/about" element={<AboutUS />} />
-          <Route path="/service" element={<Services />} />
-          <Route path="/contact" element={<ContactUS />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-          <Footer/>
-      </main>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/feature" element={<Feature />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
