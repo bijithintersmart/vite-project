@@ -5,6 +5,7 @@ import Services from "./pages/services";
 import ContactUs from "./pages/contactUs";
 import Feature from "./pages/feature";
 import Login from "./pages/login";
+import SignUp from "./pages/signup"; // Import the new SignUp component
 import PageNotFound from "./pages/404";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -20,6 +21,7 @@ function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/feature" element={<Feature />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} /> {/* Add the new SignUp route */}
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />
