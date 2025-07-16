@@ -6,6 +6,7 @@ import ContactUs from "./pages/contactUs";
 import Feature from "./pages/feature";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
+import ForgotPassword from "./pages/forgotPassword"; // Import ForgotPassword
 import PageNotFound from "./pages/404";
 import Header from "./components/header";
 import Footer from "./components/footer";
@@ -21,6 +22,7 @@ const pageOrder = [
   "/contact",
   "/login",
   "/signup",
+  "/forgot-password",
 ];
 
 const PageWrapper = ({ children }) => {
@@ -120,6 +122,15 @@ function App() {
               </PageWrapper>
             }
           />
+          <Route
+            path="/forgot-password"
+            element={
+              <PageWrapper>
+                <ForgotPassword />
+              </PageWrapper>
+            }
+          />{" "}
+          {/* Add ForgotPassword route */}
           <Route
             path="*"
             element={

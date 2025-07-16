@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import EyeOpen from "../assets/eye-open.svg";
 import EyeClosed from "../assets/eye-closed.svg";
 
-export default function Login() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loginError, setLoginError] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let valid = true;
+    setMessage("");
 
     if (!email) {
       setEmailError("Email is required");
@@ -33,7 +35,10 @@ export default function Login() {
     }
 
     if (!password) {
-      setPasswordError("Password is required");
+      setPasswordError("New password is required");
+      valid = false;
+    } else if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters");
       valid = false;
     } else {
       setPasswordError("");
@@ -41,28 +46,35 @@ export default function Login() {
 
     if (valid) {
       setLoading(true);
-      setLoginError("");
       try {
+        // Placeholder for API call
         const response = await fetch(
-          "https://test-project-26ku.onrender.com/auth/login",
+          "https://test-project-26ku.onrender.com/auth/forgot-password",
           {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, newPassword: password }),
           }
         );
 
         if (response.ok) {
-          navigate("/");
+          setMessage("Password reset successfully. You can now log in.");
+          setTimeout(() => navigate("/g"), 3000);
         } else {
           const errorData = await response.json();
-          setLoginError(errorData.message || "Invalid email or password");
+          setMessage(errorData.message || "Failed to reset password. Please try again.");
         }
+
+        // // Simulate API call success
+        // await new Promise(resolve => setTimeout(resolve, 1500));
+        // setMessage("Password reset successfully. You can now log in.");
+        // setTimeout(() => navigate("/login"), 3000);
+
       } catch (error) {
-        console.error("Login failed:", error);
-        setLoginError("Failed to connect to the server. Please try again later.");
+        console.error("Forgot password failed:", error);
+        setMessage("An unexpected error occurred. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -72,17 +84,15 @@ export default function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-800 p-4">
       <div className="flex flex-col md:flex-row w-full max-w-6xl bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden">
-        {/* Left Side: Login Form */}
+        {/* Left Side: Forgot Password Form */}
         <div className="w-full md:w-1/2 p-8 space-y-6 flex flex-col justify-center">
-          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
-            Welcome Back
-          </h2>
-          <p className="text-center text-gray-500 dark:text-gray-300">
-            Sign in to continue to your account
-          </p>
-          {loginError && (
-            <p className="mt-2 text-sm text-red-600 text-center bg-red-100 dark:bg-red-900 dark:text-red-200 p-3 rounded-lg">
-              {loginError}
+          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">Forgot Password</h2>
+          <p className="text-center text-gray-500 dark:text-gray-300">Enter your email and new password to reset.</p>
+          {message && (
+            <p className={`mt-2 text-sm text-center p-3 rounded-lg ${
+              message.includes("successfully") ? "text-green-600 bg-green-100 dark:bg-green-900 dark:text-green-200" : "text-red-600 bg-red-100 dark:bg-red-900 dark:text-red-200"
+            }`}>
+              {message}
             </p>
           )}
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -109,7 +119,7 @@ export default function Login() {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
-                Password
+                New Password
               </label>
               <input
                 id="password"
@@ -129,22 +139,17 @@ export default function Login() {
                   className="h-6 w-6"
                 />
               </button>
-              {passwordError && (
-                <p className="mt-2 text-sm text-red-600">{passwordError}</p>
-              )}
             </div>
-            <div className="text-right">
-              <Link to="/forgot-password" className="text-sm font-medium text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300">
-                Forgot password?
-              </Link>
-            </div>
+            {passwordError && (
+              <p className="mt-2 text-sm text-red-600">{passwordError}</p>
+            )}
             <div>
               <button
                 type="submit"
                 disabled={loading}
                 className="w-full px-4 py-3 text-sm font-semibold text-white bg-indigo-600 border border-transparent rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-60 transition-all duration-300 ease-in-out"
               >
-                {loading ? "Signing In..." : "Sign In"}
+                {loading ? "Resetting..." : "Reset Password"}
               </button>
             </div>
           </form>
@@ -152,15 +157,13 @@ export default function Login() {
 
         {/* Right Side: Title, Description, etc. */}
         <div className="w-full md:w-1/2 bg-indigo-600 text-white p-8 flex flex-col justify-center items-center text-center">
-          <h2 className="text-4xl font-bold mb-4">New Here?</h2>
-          <p className="text-lg mb-6">
-            Sign up and discover a great amount of new opportunities!
-          </p>
+          <h2 className="text-4xl font-bold mb-4">Remembered your password?</h2>
+          <p className="text-lg mb-6">You can log in with your existing credentials.</p>
           <button
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/login")}
             className="px-6 py-3 text-indigo-600 bg-white rounded-lg shadow-md hover:bg-gray-100 transition-all duration-300 ease-in-out"
           >
-            Sign Up
+            Back to Login
           </button>
         </div>
       </div>
