@@ -62,37 +62,19 @@ export default function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="relative inline-flex h-8 w-16 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-gray-700"
-            role="switch"
-            aria-checked={theme === 'dark'}
+            className="relative inline-flex h-9 w-20 items-center rounded-full bg-gray-200 dark:bg-gray-700 p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           >
-            <span className="sr-only">Toggle theme</span>
-            <motion.span
-              className="pointer-events-none relative inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0"
-              aria-hidden="true"
-              layout
-              transition={{ type: "spring", stiffness: 700, damping: 30 }}
-              x={theme === 'dark' ? 40 : 0}
+            <motion.div
+              className="absolute top-1 left-1 h-7 w-7 rounded-full bg-white shadow-lg flex items-center justify-center"
+              animate={{ x: theme === "dark" ? 44 : 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <motion.span
-                className={`absolute inset-0 flex h-full w-full items-center justify-center`}
-                aria-hidden="true"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: theme === 'light' ? 1 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <img src={SunIcon} alt="Light mode" className="h-5 w-5" />
-              </motion.span>
-              <motion.span
-                className={`absolute inset-0 flex h-full w-full items-center justify-center`}
-                aria-hidden="true"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: theme === 'dark' ? 1 : 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <img src={MoonIcon} alt="Dark mode" className="h-5 w-5" />
-              </motion.span>
-            </motion.span>
+              <img
+                src={theme === "dark" ? MoonIcon : SunIcon}
+                alt={theme === "dark" ? "Dark mode" : "Light mode"}
+                className="h-4 w-4"
+              />
+            </motion.div>
           </button>
 
           <Link
@@ -149,37 +131,23 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={toggleTheme}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 w-full text-left"
-                  role="switch"
-                  aria-checked={theme === 'dark'}
+                  className="relative inline-flex h-9 w-20 items-center rounded-full bg-gray-200 dark:bg-gray-700 p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 >
-                  <span className="sr-only">Toggle theme</span>
-                  <motion.span
-                    className="pointer-events-none relative inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0"
-                    aria-hidden="true"
-                    layout
-                    transition={{ type: "spring", stiffness: 700, damping: 30 }}
-                    x={theme === 'dark' ? 40 : 0}
+                  <motion.div
+                    className="absolute top-1 left-1 h-7 w-7 rounded-full bg-white shadow-lg flex items-center justify-center"
+                    animate={{ x: theme === "dark" ? 44 : 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                    }}
                   >
-                    <motion.span
-                      className={`absolute inset-0 flex h-full w-full items-center justify-center`}
-                      aria-hidden="true"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: theme === 'light' ? 1 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <img src={SunIcon} alt="Light mode" className="h-5 w-5" />
-                    </motion.span>
-                    <motion.span
-                      className={`absolute inset-0 flex h-full w-full items-center justify-center`}
-                      aria-hidden="true"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: theme === 'dark' ? 1 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <img src={MoonIcon} alt="Dark mode" className="h-5 w-5" />
-                    </motion.span>
-                  </motion.span>
+                    <img
+                      src={theme === "dark" ? MoonIcon : SunIcon}
+                      alt={theme === "dark" ? "Dark mode" : "Light mode"}
+                      className="h-4 w-4"
+                    />
+                  </motion.div>
                 </button>
                 <Link
                   to="/login"
