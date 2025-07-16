@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../assets/circle2.svg";
+import logo from "../assets/react.svg";
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "../ThemeContext";
 import SunIcon from "../assets/sun-icon.svg";
