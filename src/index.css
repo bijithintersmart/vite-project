@@ -4,6 +4,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  cursor: none;
+  scroll-behavior: smooth;
 }
 
 .active {

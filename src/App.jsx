@@ -9,118 +9,123 @@ import SignUp from "./pages/signup";
 import PageNotFound from "./pages/404";
 import Header from "./components/header";
 import Footer from "./components/footer";
+import CustomCursor from "./components/CustomCursor";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePreviousLocation } from "./hooks/usePreviousLocation.js";
+
+const pageOrder = [
+  "/",
+  "/feature",
+  "/services",
+  "/about",
+  "/contact",
+  "/login",
+  "/signup",
+];
+
+const PageWrapper = ({ children }) => {
+  const location = useLocation();
+  const previousLocation = usePreviousLocation();
+
+  let initialX = 0;
+  let exitX = 0;
+
+  const currentIndex = pageOrder.indexOf(location.pathname);
+  const previousIndex = pageOrder.indexOf(previousLocation?.pathname);
+
+  if (previousLocation && currentIndex !== -1 && previousIndex !== -1) {
+    if (currentIndex > previousIndex) {
+      initialX = 100;
+      exitX = -100;
+    } else if (currentIndex < previousIndex) {
+      initialX = -100;
+      exitX = 100;
+    }
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: initialX }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: exitX }}
+      transition={{ duration: 0.3 }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 function App() {
   const location = useLocation();
 
   return (
     <>
+      <CustomCursor />
       <Header />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route
             path="/"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <Home />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="/about"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <AboutUs />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="/services"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <Services />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="/contact"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <ContactUs />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="/feature"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <Feature />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="/login"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <Login />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="/signup"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <SignUp />
-              </motion.div>
+              </PageWrapper>
             }
           />
           <Route
             path="*"
             element={
-              <motion.div
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
+              <PageWrapper>
                 <PageNotFound />
-              </motion.div>
+              </PageWrapper>
             }
           />
         </Routes>

@@ -30,7 +30,11 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src={logo} alt="" />
+            <img
+              alt=""
+              className="h-8 w-auto"
+              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&amp;shade=600"
+            ></img>
           </Link>
         </div>
         <div className="flex lg:hidden">
