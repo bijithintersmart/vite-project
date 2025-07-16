@@ -47,3 +47,8 @@ body {
 .nav-link:hover::before {
   transform: translateY(-100%);
 }
+
+.dark body {
+  background-color: #1a202c;
+  color: #e2e8f0; 
+}

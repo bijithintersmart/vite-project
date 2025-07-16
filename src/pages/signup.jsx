@@ -101,20 +101,20 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
-      <div className="flex flex-col md:flex-row w-full max-w-6xl bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-800 p-4">
+      <div className="flex flex-col md:flex-row w-full max-w-6xl bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden">
         {/* Left Side: Sign Up Form */}
         <div className="w-full md:w-1/2 p-8 space-y-6 flex flex-col justify-center">
-          <h2 className="text-3xl font-bold text-center text-gray-800">Create an Account</h2>
-          <p className="text-center text-gray-500">Join us and start your journey!</p>
+          <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white">Create an Account</h2>
+          <p className="text-center text-gray-500 dark:text-gray-300">Join us and start your journey!</p>
           {signupError && (
-            <p className="mt-2 text-sm text-red-600 text-center bg-red-100 p-3 rounded-lg">{signupError}</p>
+            <p className="mt-2 text-sm text-red-600 text-center bg-red-100 dark:bg-red-900 dark:text-red-200 p-3 rounded-lg">{signupError}</p>
           )}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Full Name
               </label>
@@ -123,7 +123,7 @@ export default function SignUp() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="block w-full px-4 py-3 mt-1 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm"
+                className="block w-full px-4 py-3 mt-1 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm"
               />
               {nameError && (
                 <p className="mt-2 text-sm text-red-600">{nameError}</p>
@@ -132,7 +132,7 @@ export default function SignUp() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Email Address
               </label>
@@ -141,7 +141,7 @@ export default function SignUp() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="block w-full px-4 py-3 mt-1 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm"
+                className="block w-full px-4 py-3 mt-1 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm"
               />
               {emailError && (
                 <p className="mt-2 text-sm text-red-600">{emailError}</p>
@@ -150,7 +150,7 @@ export default function SignUp() {
             <div className="relative">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Password
               </label>
@@ -159,7 +159,7 @@ export default function SignUp() {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full px-4 py-3 pr-12 mt-1 text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm"
+                className="block w-full px-4 py-3 pr-12 mt-1 text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm"
               />
               <button
                 type="button"
@@ -179,7 +179,7 @@ export default function SignUp() {
             <div>
               <label
                 htmlFor="image"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
               >
                 Profile Image (Optional)
               </label>
@@ -190,7 +190,7 @@ export default function SignUp() {
                   accept="image/*"
                   onChange={handleImageChange}
                   ref={imageInputRef}
-                  className="block w-full text-gray-900 bg-gray-50 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm
+                  className="block w-full text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent sm:text-sm
                              file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold
                              file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 file:cursor-pointer"
                 />
@@ -198,7 +198,7 @@ export default function SignUp() {
                   <button
                     type="button"
                     onClick={handleRemoveImage}
-                    className="px-4 py-2 text-sm font-semibold text-red-600 bg-red-100 rounded-lg shadow-md hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    className="px-4 py-2 text-sm font-semibold text-white bg-red-600 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                   >
                     Remove
                   </button>
